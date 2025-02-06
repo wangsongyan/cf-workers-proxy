@@ -177,7 +177,7 @@ export default {
       );
       const contentType = newResponseHeaders.get("content-type") || "";
       let body;
-      if (contentType.includes("text/")) {
+      if (contentType.includes("text/") && !(IGNORE_REGEX && new RegExp(IGNORE_REGEX).test(url.pathname))) {
         body = await replaceResponseText(
           originalResponse,
           PROXY_HOSTNAME,
